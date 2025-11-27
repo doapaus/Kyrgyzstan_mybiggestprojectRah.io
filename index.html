@@ -1,178 +1,487 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Travel Kyrgyzstan — Открой Кыргызстан</title>
   <style>
-    body {
-      background-color: #75a878;
+    /* Box model helper */
+    * { box-sizing: border-box; }
+
+    /* Базовые стили */
+    :root{
+      --bg: #fbfdf9;
+      --muted: #8a8f88;
+      --accent: #2e7d32;      /* зелёный */
+      --accent-2: #0377a6;    /* голубой */
+      --card: #f7fbf9;
+      --glass: rgba(255,255,255,0.6);
     }
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: linear-gradient(90deg, #dadddd, #a2a5a28b);
-  padding: 20px 50px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-}
 
-/* Логотип */
-.logo {
-  display: flex;
-  align-items: center;
-  font-family: 'Poppins', sans-serif;
-}
-
-.logo-icon {
-  font-size: 2rem;
-  margin-right: 10px;
-}
-
-.logo-text {
-  font-size: 1.6rem;
-  font-weight: 700;
-  color: #2e7d32;
-  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-}
-
-.logo-text span {
-  color: #0288d1;
-  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-}
-
-/* Навигация */
-nav ul {
-  display: flex;
-  list-style: none;
-  gap: 25px;
-}
-
-nav a {
-  text-decoration: none;
-  color: #0e0f0e;
-  font-weight: 600;
-  transition: color 0.3s;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-}
-
-nav a:hover {
-  color: #0288d1;
-}
-.container {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  flex-wrap: wrap;
-  padding: 20px;
-}
-
-.item {
-  width: 220px;
-  text-align: center;
-  background-color: rgb(213, 227, 221);
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  transition: transform 0.3s;
-}
-
-.item:hover {
-  transform: scale(1.05);
-}
-
-.item img {
-  width: 100%;
-  height: 180px;      /* фиксированная высота */
-  object-fit: cover;  /* обрезает изображение, сохраняя пропорции */
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-}
-
-
-.item p {
-  margin: 10px 0;
-  font-weight: bold;
-  color: #333;
-}
- h1, h2, h3, h4 {
-  font-size:30px;
-  font-weight: 400;
-  margin:30px 0;
-  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
- }
-    p {
-      font-size: small;
-      font-style: italic;
-      font-family:Arial, Helvetica, sans-serif;
+    body{
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+      background: linear-gradient(180deg, var(--bg), #eef6f0);
+      color: #222;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height: 1.5;
     }
-footer {
-  display: flex;              /* располагаем элементы в линию */
-  justify-content: center;    /* центрируем их по горизонтали */
-  gap: 30px;                  /* расстояние между ссылками */
-  background-color: #f2f2f2;  /* фон футера */
-  background-size:30%;
-  border:2px solid rgb(45, 25, 25);
-  margin-top:10px;
-}
 
-footer a {
-  text-decoration: none;      /* убираем подчеркивание */
-  color: darkblue;
-  font-weight: bold;
-  transition: 0.3s;
-}
+    
+    header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:18px 28px;
+      gap:20px;
+      background: linear-gradient(90deg, rgba(246,252,250,0.9), rgba(232,249,244,0.8));
+      box-shadow: 0 6px 18px rgba(15,20,15,0.06);
+      position:sticky;
+      top:0;
+      z-index:50;
+    }
 
-footer a:hover {
-  color: dodgerblue;  
-}
+    /* Логотип текстовый (поддерживает эмодзи) */
+    .logo{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      font-weight:700;
+      color:var(--accent);
+      font-size:18px;
+    }
+    .logo .icon{
+      font-size:28px;
+    }
+    .logo .brand {
+      display:flex;
+      gap:6px;
+      align-items:baseline;
+    }
+    .logo .brand .part1 { color: #204a36; }
+    .logo .brand .part2 { color: var(--accent-2); font-weight:600; }
+
+    /* Навигация */
+    nav ul{
+      display:flex;
+      list-style:none;
+      margin:0;
+      padding:0;
+      gap:18px;
+      align-items:center;
+    }
+    nav a{
+      text-decoration:none;
+      color:#1f2623;
+      padding:8px 12px;
+      border-radius:8px;
+      font-weight:600;
+      transition: background 0.18s, color 0.18s, transform 0.18s;
+    }
+    nav a:hover{
+      background: rgba(3,119,166,0.08);
+      color: var(--accent-2);
+      transform: translateY(-2px);
+    }
+
+    /* HERO */
+    .hero{
+      margin: 20px auto;
+      max-width:1200px;
+      border-radius:14px;
+      overflow:hidden;
+      position:relative;
+      display:flex;
+      align-items:center;
+      min-height:320px;
+    }
+    .hero::before{
+      /* полупрозрачный градиент над картинкой для читаемости */
+      content:"";
+      position:absolute;
+      left:0; right:0; top:0; bottom:0;
+      background: linear-gradient(135deg, rgba(5,50,30,0.35), rgba(2,119,166,0.18));
+      pointer-events:none;
+      mix-blend-mode: multiply;
+    }
+    .hero .bg{
+      position:absolute;
+      inset:0;
+      background-image: url("https://upload.wikimedia.org/wikipedia/commons/7/79/Issykkul_plyag.jpg");
+      background-size: cover;
+      background-position: center;
+      filter: saturate(1.02) contrast(1.02);
+    }
+    .hero .hero-content{
+      position:relative;
+      padding:36px;
+      z-index:2;
+      color: #fff;
+      max-width:760px;
+      margin-left:40px;
+    }
+    .hero h1{
+      margin:0 0 12px 0;
+      font-size:34px;
+      line-height:1.05;
+      text-shadow: 0 6px 18px rgba(0,0,0,0.25);
+    }
+    .hero p.lead{
+      margin:0 0 18px 0;
+      color: rgba(255,255,255,0.95);
+      font-size:16px;
+      opacity:0.95;
+      max-width:600px;
+    }
+    .btn{
+      display:inline-block;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      color:#fff;
+      padding:10px 18px;
+      border-radius:10px;
+      text-decoration:none;
+      font-weight:700;
+      box-shadow: 0 8px 24px rgba(46,125,50,0.12);
+      transition: transform 0.18s, box-shadow 0.18s;
+    }
+    .btn:hover{ transform: translateY(-4px); box-shadow: 0 12px 32px rgba(46,125,50,0.16); }
+
+    /* MAIN LAYOUT */
+    main{
+      max-width:1200px;
+      margin:32px auto;
+      padding:0 18px;
+    }
+
+    /* Короткая карта с фактами (aside-like) */
+    .info-row{
+      display:flex;
+      gap:18px;
+      align-items:stretch;
+      margin-bottom:26px;
+      flex-wrap:wrap;
+    }
+    .card-brief{
+      background:var(--card);
+      flex:1;
+      min-width:220px;
+      border-radius:12px;
+      padding:16px;
+      box-shadow: 0 6px 18px rgba(12,20,12,0.04);
+    }
+    .card-brief h3{ margin:0 0 8px 0; color: #1c3a2f; font-size:18px; }
+    .card-brief p{ margin:0; color:var(--muted); font-size:14px; }
+
+    /* Галерея направлений - карточки */
+    .cards{
+      display:flex;
+      gap:20px;
+      flex-wrap:wrap;
+      justify-content:center;
+    }
+
+    .card{
+      width: 280px;
+      background: #fff;
+      border-radius:12px;
+      overflow:hidden;
+      box-shadow: 0 8px 28px rgba(12,20,12,0.06);
+      transition: transform 0.28s, box-shadow 0.28s;
+      display:flex;
+      flex-direction:column;
+    }
+    .card:hover{
+      transform: translateY(-8px) scale(1.01);
+      box-shadow: 0 18px 48px rgba(12,20,12,0.12);
+    }
+
+    .card figure{
+      margin:0;
+      display:block;
+      overflow:hidden;
+    }
+    .card img{
+      width:100%;
+      height:160px;
+      object-fit:cover;
+      display:block;
+    }
+    .card .body{
+      padding:14px 16px;
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+      flex:1;
+    }
+    .card h4{
+      margin:0;
+      color:#1b3a2d;
+      font-size:18px;
+    }
+    .card p{
+      margin:0;
+      color:var(--muted);
+      font-size:14px;
+      flex:1;
+    }
+
+    /* небольшой footer внутри карточки */
+    .meta{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-top:12px;
+      gap:10px;
+    }
+    .chip{
+      background: rgba(2,119,166,0.08);
+      color:var(--accent-2);
+      font-weight:700;
+      padding:6px 10px;
+      border-radius:999px;
+      font-size:13px;
+    }
+    .more{
+      text-decoration:none;
+      color: var(--accent);
+      font-weight:700;
+      font-size:13px;
+    }
+
+    /* SECTIONS */
+    section.about{
+      margin:32px 0;
+      display:flex;
+      gap:18px;
+      align-items:flex-start;
+      flex-wrap:wrap;
+    }
+    .about .text{
+      flex:1;
+      min-width:280px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.6), rgba(250,255,250,0.75));
+      border-radius:12px;
+      padding:20px;
+      box-shadow: 0 10px 28px rgba(10,20,10,0.03);
+    }
+    .about .side{
+      width:320px;
+      min-width:240px;
+    }
+
+    /* Footer */
+    footer{
+      margin-top:40px;
+      background:linear-gradient(180deg, rgba(245,248,246,1), rgba(238,246,239,1));
+      padding:18px;
+      border-top:1px solid rgba(35,35,35,0.03);
+    }
+    .footer-inner{
+      max-width:1200px;
+      margin:0 auto;
+      display:flex;
+      gap:20px;
+      justify-content:space-between;
+      align-items:center;
+      padding:0 18px;
+      flex-wrap:wrap;
+    }
+    .footer-inner nav{
+      order:2;
+    }
+    .footer-inner .copy{
+      color:var(--muted);
+      font-size:14px;
+    }
+    .footer-inner a{
+      color: #1b3a2d;
+      text-decoration:none;
+      font-weight:600;
+    }
+
+    /* Адаптивность — простая (что ты уже знаешь) */
+    @media (max-width:900px){
+      .hero { min-height: 260px; }
+      .hero .hero-content{ margin-left:18px; padding:22px; }
+      .card{ width: 45%; }
+      .about .side{ width: 100%; order:2; }
+    }
+    @media (max-width:620px){
+      header{ padding:12px 14px; gap:12px; }
+      nav ul{ gap:12px; font-size:14px; }
+      .card{ width:100%; }
+      .cards{ gap:14px; }
+      .hero h1{ font-size:24px; }
+      .hero p.lead{ font-size:14px; }
+      .info-row{ flex-direction:column; }
+    }
+
   </style>
-  </head>
-    <header>
-  <div class="logo">
-    <span class="logo-icon">🌄</span>
-    <span class="logo-text">Travel <span>Kyrgyzstan</span></span>
-  </div>
-
-  <nav>
-    <ul>
-      <li><a href="#">Главная</a></li>
-      <li><a href="#">О нас</a></li>
-      <li><a href="#">Контакты</a></li>
-    </ul>
-  </nav>
-</header>
+</head>
 <body>
-  <main>
-  <div class="container">
-    <div class="item">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/7/79/Issykkul_plyag.jpg" alt="Иссык Коль">
-      <h1>Иссык Куль</h1>
-      <p>Горное озеро с прозрачной водой, курорты и пляжи, окружено живописными пиками Тянь-Шаня.</p>
+
+  <header>
+    <div class="logo" aria-label="Travel Kyrgyzstan">
+      <span class="icon">🌄</span>
+      <span class="brand">
+        <span class="part1">Travel</span>
+        <span class="part2">Kyrgyzstan</span>
+      </span>
     </div>
-    <div class="item">
-      <img src="https://bestway.kg/wp-content/uploads/2023/09/a6ab924cd7bf4f0a9b63fd32a6b8a262.jpg" alt="Сон Коль">
-      <h2>Сон Коль</h2>
-      <p>Высокогорное озеро, где кочевники пасут скот и живут в юртах.</p>
-    </div>
-    <div class="item">
-         <img src="https://images.mir24.tv/s4PqajAjCSb9u1i7G3hcA-7JZ5_76FxlciQOqBZxBKg/rt:fill/czM6Ly9taXIyNC10di9tZWRpYS93eXNpd3lnLzdmNjlhQlRKdnA1b2J2bG5RdnQxUWJmRXdDcFZmaEM2OW1DNm9KSkwuanBn.jpg" alt="Ала Арча">
-         <h3>Ала Арча</h3>
-         <p>Национальный парк с горами, водопадами и тропами для пеших походов.</p>
-    </div>
-    <div class="item">
- <img src="https://dwc.kg/wp-content/uploads/2023/05/original.jpg" alt="Сулайман Тоо">
-          <h4>Сулайман Тоо</h4> 
-          <p>Священная гора в Оше, включена в список ЮНЕСКО.</p>
+
+    <nav aria-label="Главное меню">
+      <ul>
+        <li><a href="#about">О стране</a></li>
+        <li><a href="#places">Направления</a></li>
+        <li><a href="#contacts">Контакты</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <div class="hero" role="banner" aria-label="Главный баннер">
+    <div class="bg" aria-hidden="true"></div>
+    <div class="hero-content">
+      <h1>Открой Кыргызстан заново</h1>
+      <p class="lead">Горные озёра, древние тропы и юрты под звёздами — короткие маршруты и длинные истории. Поехали?</p>
+      <a class="btn" href="#places">Исследовать направления</a>
     </div>
   </div>
-</main>
-<footer>
-  <p>📞 <a href="tel:+996505007771">Контакты</a></p>
-  <p>👤 Автор: <a href="https://instagram.com/doapaus" target="_blank">@doapaus</a></p>
-</footer>
-</body>
-<script>
-  alert("Привет, мир!");
-</script>
 
+  <main>
+    <!-- Быстрые факты -->
+    <div class="info-row">
+      <div class="card-brief">
+        <h3>Горы > 90%</h3>
+        <p>Пейзажи Тянь-Шаня и Ала-Тоо формируют характер страны.</p>
+      </div>
+      <div class="card-brief">
+        <h3>Озёра</h3>
+        <p>Иссык-Куль и Сон-Куль — разные, но оба рвут сердце путешественника.</p>
+      </div>
+      <div class="card-brief">
+        <h3>Гостеприимство</h3>
+        <p>Юрта, чай и тёплый приём у местных — важнее красивых фоток.</p>
+      </div>
+    </div>
+
+    <!-- О стране -->
+    <section id="about" class="about" aria-labelledby="about-heading">
+      <div class="text">
+        <h2 id="about-heading">Почему стоит поехать в Кыргызстан</h2>
+        <p>Коротко: чистые горы, искренние люди и маршруты, которые можно пройти и одному, и с семьёй. Здесь туристы находят простые радости — рассветы над озером, беседы с пастухами и вкус настоящего плова.</p>
+        <p style="margin-top:12px; color:var(--muted); font-size:14px">Совет: для первого знакомства выбирай горные прибрежные маршруты — видно всё сразу и без больших логистических хлопот.</p>
+      </div>
+
+      <aside class="side">
+        <div class="card-brief" style="margin-bottom:12px;">
+          <h3>Сезоны</h3>
+          <p>Лето — для озёр, весна/осень — для походов, зима — для закалённых лыжников.</p>
+        </div>
+        <div class="card-brief">
+          <h3>Совет по безопасности</h3>
+          <p>Берегите погоду в горах и планируйте маршрут заранее — связь местами слабая.</p>
+        </div>
+      </aside>
+    </section>
+
+    <!-- Направления -->
+    <section id="places" aria-labelledby="places-heading">
+      <h2 id="places-heading" style="text-align:center; margin-bottom:18px;">Популярные направления</h2>
+
+      <div class="cards">
+        <!-- Иссык-Куль -->
+        <article class="card" role="article" aria-label="Иссык-Куль">
+          <figure>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/7/79/Issykkul_plyag.jpg" alt="Озеро Иссык-Куль">
+          </figure>
+          <div class="body">
+            <h4>Иссык-Куль</h4>
+            <p>Горное озеро с прозрачной водой, курорты и пляжи, окружено живописными пиками.</p>
+            <div class="meta">
+              <span class="chip">Озеро</span>
+              <a class="more" href="#about">Подробнее →</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Сон-Куль -->
+        <article class="card" role="article" aria-label="Сон-Куль">
+          <figure>
+            <img src="https://bestway.kg/wp-content/uploads/2023/09/a6ab924cd7bf4f0a9b63fd32a6b8a262.jpg" alt="Озеро Сон-Куль">
+          </figure>
+          <div class="body">
+            <h4>Сон-Куль</h4>
+            <p>Высокогорное озеро, где кочевники пасут скот и живут в юртах летом.</p>
+            <div class="meta">
+              <span class="chip">Юрты</span>
+              <a class="more" href="#about">Подробнее →</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Ала-Арча -->
+        <article class="card" role="article" aria-label="Ала-Арча">
+          <figure>
+            <img src="https://images.mir24.tv/s4PqajAjCSb9u1i7G3hcA-7JZ5_76FxlciQOqBZxBKg/rt:fill/czM6Ly9taXIyNC10di9tZWRpYS93eXNpd3lnLzdmNjlhQlRKdnA1b2J2bG5RdnQxUWJmRXdDcFZmaEM2OW1DNm9KSkwuanBn.jpg" alt="Нацпарк Ала-Арча">
+          </figure>
+          <div class="body">
+            <h4>Ала-Арча</h4>
+            <p>Национальный парк с пешими тропами, ледниками и красивыми смотровыми точками.</p>
+            <div class="meta">
+              <span class="chip">Походы</span>
+              <a class="more" href="#about">Подробнее →</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Сулайман-Тоо -->
+        <article class="card" role="article" aria-label="Сулайман-Тоо">
+          <figure>
+            <img src="https://dwc.kg/wp-content/uploads/2023/05/original.jpg" alt="Сулайман-Тоо">
+          </figure>
+          <div class="body">
+            <h4>Сулайман-Тоо</h4>
+            <p>Священная гора в Оше, с древними памятниками и атмосферой истории и легенд.</p>
+            <div class="meta">
+              <span class="chip">История</span>
+              <a class="more" href="#about">Подробнее →</a>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- Контакт -->
+    <section id="contacts" style="margin-top:32px;">
+      <h2 style="text-align:center; margin-bottom:12px;">Контакты</h2>
+      <div style="display:flex; gap:18px; justify-content:center; flex-wrap:wrap;">
+        <div class="card-brief" style="min-width:240px;">
+          <h3>Связаться с нами</h3>
+          <p>Телефон: <a href="tel:+996505007771">+996 505 007 771</a></p>
+          <p>Instagram: <a href="https://instagram.com/doapaus" target="_blank">@doapaus</a></p>
+        </div>
+        <div class="card-brief" style="min-width:240px;">
+          <h3>Поддержка</h3>
+          <p>Планируете поездку? Напишите — подскажем маршрут и поможем с логистикой.</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer id="site-footer">
+    <div class="footer-inner">
+      <div class="copy">© 2025 EcoTravel — Путешествия по Кыргызстану</div>
+      <nav aria-label="footer">
+        <a href="#about">О стране</a> ·
+        <a href="#places">Направления</a> ·
+        <a href="#contacts">Контакты</a>
+      </nav>
+    </div>
+  </footer>
+
+</body>
 </html>
